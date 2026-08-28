@@ -1,4 +1,7 @@
-$ErrorActionPreference = "Stop"
+# Windows PowerShell 5 reports normal native stderr output (including successful
+# git push progress) as a non-terminating error record. Keep native exit codes as
+# the source of truth so successful pushes are not mistaken for script failures.
+$ErrorActionPreference = "Continue"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $LogFile = Join-Path $ScriptDir "run.log"
